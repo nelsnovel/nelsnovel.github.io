@@ -195,6 +195,29 @@
     padding: 40px 16px;
     display: none;
   }
+
+  /* GENRE FILTER */
+  .genre-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 16px 0;
+  }
+  .genre-btn{
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #edb8ff;
+    box-shadow: 0 4px 0 0 #edb8ff;
+    border-radius: 999px;
+    padding: 7px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .genre-btn.active{
+    background: #edb8ff;
+  }
 </style>
 </head>
 <body>
@@ -219,6 +242,9 @@
     <div class="search-wrap">
       <input type="text" id="searchInput" class="search-box" placeholder="Cari judul light novel...">
     </div>
+
+    <!-- GENRE FILTER -->
+    <div class="genre-wrap" id="genreFilter"></div>
 
     <!-- PRODUCT GRID (otomatis digenerate dari daftar "produk" di bawah) -->
     <div class="grid" id="productGrid"></div>
@@ -275,17 +301,39 @@
     const PRODUK_PER_HALAMAN = 24;
     let halamanAktif = 1;
     let kataKunci = "";
+    let genreAktif = "Semua";
 
     const grid = document.getElementById("productGrid");
     const pagination = document.getElementById("pagination");
     const searchInput = document.getElementById("searchInput");
     const searchEmpty = document.getElementById("searchEmpty");
+    const genreFilter = document.getElementById("genreFilter");
 
     function getProdukTersaring() {
-      if (!kataKunci) return produk;
-      return produk.filter(item =>
-        item.judul.toLowerCase().includes(kataKunci.toLowerCase())
-      );
+      return produk.filter(item => {
+        const cocokJudul = !kataKunci || item.judul.toLowerCase().includes(kataKunci.toLowerCase());
+        const cocokGenre = genreAktif === "Semua" || item.genre === genreAktif;
+        return cocokJudul && cocokGenre;
+      });
+    }
+
+    function renderGenreFilter() {
+      const semuaGenre = ["Semua", ...new Set(produk.map(item => item.genre).filter(Boolean))];
+      genreFilter.innerHTML = "";
+
+      semuaGenre.forEach(g => {
+        const btn = document.createElement("button");
+        btn.className = "genre-btn" + (g === genreAktif ? " active" : "");
+        btn.textContent = g;
+        btn.onclick = () => {
+          genreAktif = g;
+          halamanAktif = 1;
+          renderGrid(halamanAktif);
+          renderPagination(halamanAktif);
+          renderGenreFilter();
+        };
+        genreFilter.appendChild(btn);
+      });
     }
 
     function renderGrid(halaman) {
@@ -361,6 +409,7 @@
       renderPagination(halamanAktif);
     });
 
+    renderGenreFilter();
     renderGrid(halamanAktif);
     renderPagination(halamanAktif);
   </script>
