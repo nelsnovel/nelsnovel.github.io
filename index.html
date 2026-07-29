@@ -166,6 +166,35 @@
     font-weight: 600;
     padding: 0 6px;
   }
+
+  /* SEARCH BAR */
+  .search-wrap{
+    padding: 24px 16px 0;
+  }
+  .search-box{
+    width: 100%;
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #edb8ff;
+    box-shadow: 0 4px 0 0 #edb8ff;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    outline: none;
+  }
+  .search-box::placeholder{
+    color: #9a9aa5;
+    font-weight: 500;
+  }
+  .search-empty{
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    padding: 40px 16px;
+    display: none;
+  }
 </style>
 </head>
 <body>
@@ -186,8 +215,14 @@
       <div class="tagline">Katalog Light Novel</div>
     </div>
 
+    <!-- SEARCH BAR -->
+    <div class="search-wrap">
+      <input type="text" id="searchInput" class="search-box" placeholder="Cari judul light novel...">
+    </div>
+
     <!-- PRODUCT GRID (otomatis digenerate dari daftar "produk" di bawah) -->
     <div class="grid" id="productGrid"></div>
+    <div class="search-empty" id="searchEmpty">Tidak ada judul yang cocok dengan pencarianmu.</div>
 
     <!-- PAGINATION -->
     <div class="pagination" id="pagination"></div>
@@ -208,42 +243,36 @@
       { gambar: "images/produk-6.jpg", judul: "Judul Produk 6 yang Cukup Panjang di Sini", warna: "#48bb78" },
       { gambar: "images/produk-7.jpg", judul: "Judul Produk 7 yang Cukup Panjang di Sini", warna: "#ed64a6" },
       { gambar: "images/produk-8.jpg", judul: "Judul Produk 8 yang Cukup Panjang di Sini", warna: "#ecc94b" },
-      { gambar: "images/cover1.jpg",   judul: "Bad End Fukahi no Make Heroine-tachi ga Mob Boukansha no Ore ni Renai Flag wo Tatete kuru", warna: "#4fd1c5" },
-      { gambar: "images/produk-2.jpg", judul: "Judul Produk 2 yang Cukup Panjang di Sini", warna: "#f6ad55" },
-      { gambar: "images/produk-3.jpg", judul: "Judul Produk 3 yang Cukup Panjang di Sini", warna: "#f56565" },
-      { gambar: "images/produk-4.jpg", judul: "Judul Produk 4 yang Cukup Panjang di Sini", warna: "#63b3ed" },
-      { gambar: "images/cover1.jpg",   judul: "Bad End Fukahi no Make Heroine-tachi ga Mob Boukansha no Ore ni Renai Flag wo Tatete kuru", warna: "#4fd1c5" },
-      { gambar: "images/produk-2.jpg", judul: "Judul Produk 2 yang Cukup Panjang di Sini", warna: "#f6ad55" },
-      { gambar: "images/produk-3.jpg", judul: "Judul Produk 3 yang Cukup Panjang di Sini", warna: "#f56565" },
-      { gambar: "images/produk-4.jpg", judul: "Judul Produk 4 yang Cukup Panjang di Sini", warna: "#63b3ed" },
-      { gambar: "images/produk-5.jpg", judul: "Judul Produk 5 yang Cukup Panjang di Sini", warna: "#9f7aea" },
-      { gambar: "images/produk-6.jpg", judul: "Judul Produk 6 yang Cukup Panjang di Sini", warna: "#48bb78" },
-      { gambar: "images/produk-7.jpg", judul: "Judul Produk 7 yang Cukup Panjang di Sini", warna: "#ed64a6" },
-      { gambar: "images/produk-8.jpg", judul: "Judul Produk 8 yang Cukup Panjang di Sini", warna: "#ecc94b" },
-      { gambar: "images/cover1.jpg",   judul: "Bad End Fukahi no Make Heroine-tachi ga Mob Boukansha no Ore ni Renai Flag wo Tatete kuru", warna: "#4fd1c5" },
-      { gambar: "images/produk-2.jpg", judul: "Judul Produk 2 yang Cukup Panjang di Sini", warna: "#f6ad55" },
-      { gambar: "images/produk-3.jpg", judul: "Judul Produk 3 yang Cukup Panjang di Sini", warna: "#f56565" },
-      { gambar: "images/produk-4.jpg", judul: "Judul Produk 4 yang Cukup Panjang di Sini", warna: "#63b3ed" },
-      { gambar: "images/produk-5.jpg", judul: "Judul Produk 5 yang Cukup Panjang di Sini", warna: "#9f7aea" },
-      { gambar: "images/produk-6.jpg", judul: "Judul Produk 6 yang Cukup Panjang di Sini", warna: "#48bb78" },
     ];
 
     // =====================================================
-    // PENGATURAN PAGINATION
+    // PENGATURAN PAGINATION + SEARCH
     // =====================================================
     const PRODUK_PER_HALAMAN = 24;
     let halamanAktif = 1;
+    let kataKunci = "";
 
     const grid = document.getElementById("productGrid");
     const pagination = document.getElementById("pagination");
-    const totalHalaman = Math.ceil(produk.length / PRODUK_PER_HALAMAN);
+    const searchInput = document.getElementById("searchInput");
+    const searchEmpty = document.getElementById("searchEmpty");
+
+    function getProdukTersaring() {
+      if (!kataKunci) return produk;
+      return produk.filter(item =>
+        item.judul.toLowerCase().includes(kataKunci.toLowerCase())
+      );
+    }
 
     function renderGrid(halaman) {
       grid.innerHTML = "";
 
+      const hasil = getProdukTersaring();
       const mulai = (halaman - 1) * PRODUK_PER_HALAMAN;
       const akhir = mulai + PRODUK_PER_HALAMAN;
-      const produkHalamanIni = produk.slice(mulai, akhir);
+      const produkHalamanIni = hasil.slice(mulai, akhir);
+
+      searchEmpty.style.display = hasil.length === 0 ? "block" : "none";
 
       produkHalamanIni.forEach(item => {
         const card = document.createElement("div");
@@ -266,7 +295,11 @@
     function renderPagination(halaman) {
       pagination.innerHTML = "";
 
-      // Tombol "Sebelumnya"
+      const hasil = getProdukTersaring();
+      const totalHalaman = Math.max(1, Math.ceil(hasil.length / PRODUK_PER_HALAMAN));
+
+      if (totalHalaman <= 1) return;
+
       const btnPrev = document.createElement("button");
       btnPrev.className = "page-btn";
       btnPrev.textContent = "← Sebelumnya";
@@ -274,13 +307,11 @@
       btnPrev.onclick = () => gotoHalaman(halaman - 1);
       pagination.appendChild(btnPrev);
 
-      // Info halaman
       const info = document.createElement("span");
       info.className = "page-info";
       info.textContent = `Halaman ${halaman} dari ${totalHalaman}`;
       pagination.appendChild(info);
 
-      // Tombol "Selanjutnya"
       const btnNext = document.createElement("button");
       btnNext.className = "page-btn";
       btnNext.textContent = "Selanjutnya →";
@@ -290,6 +321,8 @@
     }
 
     function gotoHalaman(halaman) {
+      const hasil = getProdukTersaring();
+      const totalHalaman = Math.max(1, Math.ceil(hasil.length / PRODUK_PER_HALAMAN));
       if (halaman < 1 || halaman > totalHalaman) return;
       halamanAktif = halaman;
       renderGrid(halamanAktif);
@@ -297,7 +330,13 @@
       grid.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    // Render pertama kali saat halaman dibuka
+    searchInput.addEventListener("input", (e) => {
+      kataKunci = e.target.value.trim();
+      halamanAktif = 1;
+      renderGrid(halamanAktif);
+      renderPagination(halamanAktif);
+    });
+
     renderGrid(halamanAktif);
     renderPagination(halamanAktif);
   </script>
