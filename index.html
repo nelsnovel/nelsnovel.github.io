@@ -6,6 +6,7 @@
 <title>Katalog NelsNovel</title>
 <style>
   :root{
+    --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
     --bg: #1c1c22;
     --card-bg: #26262e;
     --accent: #f2994a;
@@ -15,7 +16,7 @@
   }
   *{ box-sizing:border-box; margin:0; padding:0; }
   body{
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-main);
     background: var(--bg);
     color: var(--text-light);
     min-height: 100vh;
@@ -218,6 +219,272 @@
   .genre-btn.active{
     background: #edb8ff;
   }
+
+  /* MODAL TRIGGER BUTTON */
+  .modal-trigger-wrap{
+    text-align: center;
+    padding: 20px 16px 0;
+  }
+  .modal-trigger-btn{
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #edb8ff;
+    box-shadow: 0 4px 0 0 #edb8ff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  /* MODAL / FLOATING WINDOW */
+  .modal-overlay{
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.show{
+    display: flex;
+  }
+  .modal-box{
+    background: var(--card-bg);
+    border: 3px solid #edb8ff;
+    box-shadow: 0 12px 0 0 #edb8ff;
+    border-radius: 24px;
+    max-width: 760px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    animation: modalPop 0.2s ease;
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+  }
+  @keyframes modalPop{
+    from{ transform: scale(0.92); opacity: 0; }
+    to{ transform: scale(1); opacity: 1; }
+  }
+
+  /* BANNER MODAL */
+  .modal-banner{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/1;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .modal-banner img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .modal-close{
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: rgba(0,0,0,0.4);
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+  .modal-close:hover{
+    background: rgba(0,0,0,0.65);
+  }
+
+  /* ISI / DESKRIPSI MODAL */
+  .modal-body{
+    padding: 32px 40px 40px;
+    overflow-y: auto;
+  }
+  .modal-text{
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--text-light);
+    text-align: center;
+  }
+
+  /* TOMBOL WHATSAPP */
+  .modal-wa-wrap{
+    display: flex;
+    justify-content: center;
+    margin-top: 26px;
+  }
+  .modal-wa-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #ffffff;
+    color: #14161f;
+    border: 2px solid #25D366;
+    border-radius: 999px;
+    padding: 14px 32px;
+    font-size: 17px;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .modal-wa-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+  }
+  .modal-wa-btn svg{
+    width: 24px;
+    height: 24px;
+    fill: #25D366;
+  }
+
+  /* SECTION HEADING */
+  .section-heading{
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    padding: 24px 16px 0;
+    letter-spacing: 0.5px;
+  }
+
+  /* CAROUSEL COVERFLOW */
+  .carousel-wrap{
+    position: relative;
+    padding: 20px 16px 10px;
+  }
+  .carousel-stage{
+    position: relative;
+    height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .coverflow-card{
+    position: absolute;
+    width: 250px;
+    aspect-ratio: 3/4;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 2px solid var(--card-stroke, #4fd1c5);
+    transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
+                opacity 0.5s ease,
+                box-shadow 0.5s ease,
+                filter 0.5s ease;
+    cursor: pointer;
+  }
+  .coverflow-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .coverflow-card .cf-title{
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  }
+
+  /* posisi tengah (fokus utama) — dengan animasi melayang halus */
+  .coverflow-card.pos-0{
+    transform: translateX(0) scale(1);
+    z-index: 5;
+    box-shadow: 0 22px 40px -10px var(--card-stroke, #4fd1c5);
+    filter: brightness(1);
+    animation: floatCard 3s ease-in-out infinite;
+  }
+  @keyframes floatCard{
+    0%, 100%{ transform: translateX(0) translateY(0) scale(1); }
+    50%{ transform: translateX(0) translateY(-10px) scale(1); }
+  }
+  /* satu langkah di kanan/kiri */
+  .coverflow-card.pos-1{
+    transform: translateX(190px) scale(0.78);
+    z-index: 4;
+    box-shadow: 0 14px 26px -10px var(--card-stroke, #4fd1c5);
+    filter: brightness(0.8);
+  }
+  .coverflow-card.pos-neg1{
+    transform: translateX(-190px) scale(0.78);
+    z-index: 4;
+    box-shadow: 0 14px 26px -10px var(--card-stroke, #4fd1c5);
+    filter: brightness(0.8);
+  }
+  /* dua langkah, paling luar */
+  .coverflow-card.pos-2{
+    transform: translateX(340px) scale(0.58);
+    z-index: 3;
+    box-shadow: 0 8px 18px -8px var(--card-stroke, #4fd1c5);
+    filter: brightness(0.6);
+  }
+  .coverflow-card.pos-neg2{
+    transform: translateX(-340px) scale(0.58);
+    z-index: 3;
+    box-shadow: 0 8px 18px -8px var(--card-stroke, #4fd1c5);
+    filter: brightness(0.6);
+  }
+
+  .carousel-arrow{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #edb8ff;
+    box-shadow: 0 3px 0 0 #edb8ff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  .carousel-arrow.left{
+    left: 8px;
+  }
+  .carousel-arrow.right{
+    right: 8px;
+  }
+
+  @media (max-width: 780px){
+    .carousel-stage{ height: 380px; }
+    .coverflow-card{ width: 190px; }
+    .coverflow-card.pos-1{ transform: translateX(130px) scale(0.75); }
+    .coverflow-card.pos-neg1{ transform: translateX(-130px) scale(0.75); }
+    .coverflow-card.pos-2{ transform: translateX(220px) scale(0.55); }
+    .coverflow-card.pos-neg2{ transform: translateX(-220px) scale(0.55); }
+  }
+
+  @media (max-width: 560px){
+    .carousel-stage{ height: 300px; }
+    .coverflow-card{ width: 145px; }
+    .coverflow-card.pos-1{ transform: translateX(95px) scale(0.72); }
+    .coverflow-card.pos-neg1{ transform: translateX(-95px) scale(0.72); }
+    .coverflow-card.pos-2{ transform: translateX(160px) scale(0.5); }
+    .coverflow-card.pos-neg2{ transform: translateX(-160px) scale(0.5); }
+  }
 </style>
 </head>
 <body>
@@ -238,6 +505,24 @@
       <div class="tagline">Katalog Light Novel</div>
     </div>
 
+    <!-- TOMBOL PEMICU MODAL -->
+    <div class="modal-trigger-wrap">
+      <button class="modal-trigger-btn" onclick="bukaModal()">Info Toko</button>
+    </div>
+
+    <!-- NEW UPDATE HEADING -->
+    <div class="section-heading">NEW UPDATE!</div>
+
+    <!-- CAROUSEL PRODUK (COVERFLOW) -->
+    <div class="carousel-wrap">
+      <button class="carousel-arrow left" onclick="geserCarousel(-1)">&#8249;</button>
+      <div class="carousel-stage" id="carouselStage"></div>
+      <button class="carousel-arrow right" onclick="geserCarousel(1)">&#8250;</button>
+    </div>
+
+    <!-- ALL CATALOGUE HEADING -->
+    <div class="section-heading">ALL CATALOGUE</div>
+
     <!-- SEARCH BAR -->
     <div class="search-wrap">
       <input type="text" id="searchInput" class="search-box" placeholder="Cari judul light novel...">
@@ -255,32 +540,62 @@
 
   </div>
 
+  <!-- MODAL / FLOATING WINDOW -->
+  <div class="modal-overlay" id="modalOverlay" onclick="tutupModalDariLuar(event)">
+    <div class="modal-box">
+
+      <!-- BANNER MODAL -->
+      <div class="modal-banner">
+        <img src="images/banner-cara-akses.jpg" alt="Cara Akses">
+        <button class="modal-close" onclick="tutupModal()">&times;</button>
+      </div>
+
+      <!-- ISI / DESKRIPSI + TOMBOL WA -->
+      <div class="modal-body">
+        <div class="modal-text">
+          Tulis deskripsi/cara aksesnya di sini — misalnya cara order,
+          format pemesanan, metode pembayaran, atau info lain yang mau kamu sampaikan
+          ke pengunjung sebelum mereka menghubungi kamu lewat WhatsApp.
+        </div>
+
+        <div class="modal-wa-wrap">
+          <a href="https://wa.me/6281234567890" target="_blank" class="modal-wa-btn">
+            <svg viewBox="0 0 24 24"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.85 13.28L3 21l3.85-1.15A9 9 0 0 0 12.05 21a8.94 8.94 0 0 0 8.94-9c0-2.4-.92-4.6-2.39-5.68zM12.05 19.5a7.35 7.35 0 0 1-3.75-1.03l-.27-.16-2.79.83.83-2.71-.18-.28A7.44 7.44 0 1 1 19.5 12.05a7.42 7.42 0 0 1-7.45 7.45zm4.08-5.57c-.22-.11-1.31-.65-1.52-.72s-.35-.11-.5.11-.58.72-.71.87-.26.16-.48.05a6.11 6.11 0 0 1-1.8-1.11 6.7 6.7 0 0 1-1.24-1.54c-.13-.22 0-.34.1-.45s.22-.26.33-.39a1.5 1.5 0 0 0 .22-.37.4.4 0 0 0 0-.39c-.05-.11-.5-1.2-.68-1.64s-.36-.37-.5-.38h-.43a.82.82 0 0 0-.6.28 2.5 2.5 0 0 0-.78 1.86 4.34 4.34 0 0 0 .91 2.3 9.94 9.94 0 0 0 3.8 3.36c.53.23.94.36 1.26.47a3 3 0 0 0 1.4.09 2.3 2.3 0 0 0 1.5-1.06 1.87 1.87 0 0 0 .13-1.06c-.06-.1-.2-.16-.42-.27z"/></svg>
+            Beli Via TF
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <script>
     // =====================================================
     // DAFTAR PRODUK — tinggal tambah baris baru di sini
     // kalau ada judul baru, tidak perlu sentuh bagian lain
+    // tambahkan "baru: true" untuk masukkan ke carousel NEW UPDATE
     // =====================================================
     const produk = [
-      { gambar: "images/coverbaru2.webp",   judul: "Akugyaku no Agapeia ~Renai RPG Saikyou no Netori Charao ni Tensei shita kedo, Ore wa Zettai ni Netottari shinai!~  [V1]", warna: "#4fd1c5", genre: "Fantasy" },
-      { gambar: "images/coverbaru1.webp", judul: "Jinrui Metsubou BAD END made Ato 2-nen, Boku dake ga Sore wo Shitte Iru [V2]", warna: "#f6ad55", genre: "Fantasy" },
-      { gambar: "images/cover1.jpg", judul: "Bad End Fukahi no Make Heroine-tachi ga Mob Boukansha no Ore ni Renai Flag wo Tatete kuru [V1]", warna: "#f56565", genre: "Romance" },
-      { gambar: "images/cover2.webp", judul: "Ouja no Bankuruwase ~Net Shougi no Teiou, Shinigami no Kama wo Hirugaesu~ [V2]", warna: "#63b3ed", genre: "Sports" },
-      { gambar: "images/cover3.webp", judul: "Game Chuuban de Uragiru Itome Kansaiben no Akuyaku Kizoku ni Tensei shita node, Koyuu Mahou wo Kiwamete Hametsu Flag wo Kaihi shimasu [V1]", warna: "#9f7aea", genre: "Fantasy" },
-      { gambar: "images/cover4.webp", judul: "Jitsu wa Ippai Taberu Harapeko Gyaru ga Futamata sarete ta kara, Ibukuro wo Tsukande Kuzu Kareshi kara Ryakudatsu suru koto ni shita [V1]", warna: "#48bb78", genre: "Romance" },
-      { gambar: "images/cover5.webp", judul: "Saijo no Osewa: Takane no Hanadarake na Meimonkou de, Gakuin Ichi no Ojousama (Seikatsu Nouryoku Kaimu) wo Kagenagara Osewa suru Koto ni Narimashita [V2]", warna: "#ed64a6", genre: "Romance" },
-      { gambar: "images/cover6.webp", judul: "Maou no Kyoushitsu Nishuume Kyoushi wa Seito wo Nidoto Shinasenai [V1]", warna: "#ecc94b", genre: "Fantasy" },
-      { gambar: "images/cover7.webp", judul: "Class no Quarter Bishoujo ga Gimai ni Natta. Shiranai Uchi ni Kudoi Teta [V2}", warna: "#4fd1c5", genre: "Romance" },
-      { gambar: "images/cover8.webp", judul: "Jinrui Metsubou End ni Totsunyuu shita node, Sekai Saikyou no Akuyaku Kizoku wa Yudan Manshin wo Yamemashita. ~Nanmin wo Ukeire Makutetara Ryouchi ga 'Saigo no Toride' ni. Zettai Bougyo Skill to Jinzai Cheat wo Kushi shite Game Chishiki de Musou shimasu~ [V1]", warna: "#f6ad55", genre: "Fantasy" },
-      { gambar: "images/cover9.webp", judul: "Danjohi 1:30 no Teisou Gyakuten Sekai de Mi wo Teishite Onnanoko-tachi wo Mamottara Ai ga Omoku Narisugita [V1]", warna: "#f56565", genre: "Fantasy" },
-      { gambar: "images/cover10.webp", judul: "Densha de Nagurareteru Ikemen Danshi Koukousei o Tasuketara Joshi-kou no Oujisama Datta Ken [V2]", warna: "#63b3ed", genre: "Romance" },
-      { gambar: "images/cover12.webp", judul: "Maryoku Zero no Saikyou Kenja ~Mahou Riron wo Kiwametara, Sekai Saikyou ni Natte ita~ 1-kan [V1]", warna: "#9f7aea", genre: "Fantasy" },
-      { gambar: "images/cover13.webp", judul: "#Ore no Kurorekishi ga Yomarete Shimau Hashtag [V1]", warna: "#48bb78", genre: "Romance" },
-      { gambar: "images/cover15.webp", judul: "Mahou Shoujo Anime no Mob ni Tensei shita node, Zenmetsu Sunzen no Kanojo-tachi wo Tasukete [Kumorase] wo Ogami ni Iku! [V1]", warna: "#ed64a6", genre: "Romance" },
-      { gambar: "images/cover18.webp", judul: "Ouja no Bankuruwase ~Net Shougi no Teiou, Kouryuu no Ouja to Taiji suru~ [V1]", warna: "#ecc94b", genre: "Sports" },
+      { gambar: "images/coverbaru2.webp",   judul: "Akugyaku no Agapeia ~Renai RPG Saikyou no Netori Charao ni Tensei shita kedo, Ore wa Zettai ni Netottari shinai!~  [V1]", warna: "#4fd1c5", genre: "Fantasy", baru: true },
+      { gambar: "images/coverbaru1.webp", judul: "Jinrui Metsubou BAD END made Ato 2-nen, Boku dake ga Sore wo Shitte Iru [V2]", warna: "#f6ad55", genre: "Fantasy", baru: true },
+      { gambar: "images/cover1.jpg", judul: "Bad End Fukahi no Make Heroine-tachi ga Mob Boukansha no Ore ni Renai Flag wo Tatete kuru [V1]", warna: "#f56565", genre: "Romance", baru: true },
+      { gambar: "images/cover2.webp", judul: "Ouja no Bankuruwase ~Net Shougi no Teiou, Shinigami no Kama wo Hirugaesu~ [V2]", warna: "#63b3ed", genre: "Sports", baru: true },
+      { gambar: "images/cover3.webp", judul: "Game Chuuban de Uragiru Itome Kansaiben no Akuyaku Kizoku ni Tensei shita node, Koyuu Mahou wo Kiwamete Hametsu Flag wo Kaihi shimasu [V1]", warna: "#9f7aea", genre: "Fantasy", baru: true },
+      { gambar: "images/cover4.webp", judul: "Jitsu wa Ippai Taberu Harapeko Gyaru ga Futamata sarete ta kara, Ibukuro wo Tsukande Kuzu Kareshi kara Ryakudatsu suru koto ni shita [V1]", warna: "#48bb78", genre: "Romance", baru: false },
+      { gambar: "images/cover5.webp", judul: "Saijo no Osewa: Takane no Hanadarake na Meimonkou de, Gakuin Ichi no Ojousama (Seikatsu Nouryoku Kaimu) wo Kagenagara Osewa suru Koto ni Narimashita [V2]", warna: "#ed64a6", genre: "Romance", baru: false },
+      { gambar: "images/cover6.webp", judul: "Maou no Kyoushitsu Nishuume Kyoushi wa Seito wo Nidoto Shinasenai [V1]", warna: "#ecc94b", genre: "Fantasy", baru: false },
+      { gambar: "images/cover7.webp", judul: "Class no Quarter Bishoujo ga Gimai ni Natta. Shiranai Uchi ni Kudoi Teta [V2}", warna: "#4fd1c5", genre: "Romance", baru: false },
+      { gambar: "images/cover8.webp", judul: "Jinrui Metsubou End ni Totsunyuu shita node, Sekai Saikyou no Akuyaku Kizoku wa Yudan Manshin wo Yamemashita. ~Nanmin wo Ukeire Makutetara Ryouchi ga 'Saigo no Toride' ni. Zettai Bougyo Skill to Jinzai Cheat wo Kushi shite Game Chishiki de Musou shimasu~ [V1]", warna: "#f6ad55", genre: "Fantasy", baru: false },
+      { gambar: "images/cover9.webp", judul: "Danjohi 1:30 no Teisou Gyakuten Sekai de Mi wo Teishite Onnanoko-tachi wo Mamottara Ai ga Omoku Narisugita [V1]", warna: "#f56565", genre: "Fantasy", baru: false },
+      { gambar: "images/cover10.webp", judul: "Densha de Nagurareteru Ikemen Danshi Koukousei o Tasuketara Joshi-kou no Oujisama Datta Ken [V2]", warna: "#63b3ed", genre: "Romance", baru: false },
+      { gambar: "images/cover12.webp", judul: "Maryoku Zero no Saikyou Kenja ~Mahou Riron wo Kiwametara, Sekai Saikyou ni Natte ita~ 1-kan [V1]", warna: "#9f7aea", genre: "Fantasy", baru: false },
+      { gambar: "images/cover13.webp", judul: "#Ore no Kurorekishi ga Yomarete Shimau Hashtag [V1]", warna: "#48bb78", genre: "Romance", baru: false },
+      { gambar: "images/cover15.webp", judul: "Mahou Shoujo Anime no Mob ni Tensei shita node, Zenmetsu Sunzen no Kanojo-tachi wo Tasukete [Kumorase] wo Ogami ni Iku! [V1]", warna: "#ed64a6", genre: "Romance", baru: false },
+      { gambar: "images/cover18.webp", judul: "Ouja no Bankuruwase ~Net Shougi no Teiou, Kouryuu no Ouja to Taiji suru~ [V1]", warna: "#ecc94b", genre: "Sports", baru: false },
     ];
 
     // =====================================================
-    // PENGATURAN PAGINATION + SEARCH
+    // PENGATURAN PAGINATION + SEARCH + GENRE FILTER
     // =====================================================
     const PRODUK_PER_HALAMAN = 24;
     let halamanAktif = 1;
@@ -396,6 +711,116 @@
     renderGenreFilter();
     renderGrid(halamanAktif);
     renderPagination(halamanAktif);
+
+    // =====================================================
+    // MODAL / FLOATING WINDOW
+    // =====================================================
+    function bukaModal() {
+      document.getElementById("modalOverlay").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function tutupModal() {
+      document.getElementById("modalOverlay").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    function tutupModalDariLuar(event) {
+      if (event.target.id === "modalOverlay") {
+        tutupModal();
+      }
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") tutupModal();
+    });
+
+    // =====================================================
+    // CAROUSEL PRODUK ("NEW UPDATE!") — gaya coverflow
+    // Selalu menampilkan 5 produk, item tengah jadi fokus
+    // =====================================================
+    let produkCarousel = produk.filter(item => item.baru);
+    if (produkCarousel.length < 5) {
+      produkCarousel = produk.slice(0, 5);
+    } else {
+      produkCarousel = produkCarousel.slice(0, 5);
+    }
+
+    let indexTengah = 0;
+    let cardElements = [];
+
+    function buatCarousel() {
+      const stage = document.getElementById("carouselStage");
+      stage.innerHTML = "";
+      cardElements = [];
+
+      produkCarousel.forEach((item, i) => {
+        const card = document.createElement("div");
+        card.className = "coverflow-card";
+        card.style.setProperty("--card-stroke", item.warna || "#4fd1c5");
+        card.onclick = () => {
+          indexTengah = i;
+          updatePosisiCarousel();
+          resetAutoSlide();
+        };
+
+        card.innerHTML = `
+          <img src="${item.gambar}" alt="${item.judul}" loading="lazy">
+          <div class="cf-title">${item.judul}</div>
+        `;
+
+        stage.appendChild(card);
+        cardElements.push(card);
+      });
+
+      updatePosisiCarousel();
+    }
+
+    function updatePosisiCarousel() {
+      const total = produkCarousel.length;
+
+      cardElements.forEach((card, i) => {
+        let jarak = i - indexTengah;
+        if (jarak > total / 2) jarak -= total;
+        if (jarak < -total / 2) jarak += total;
+
+        const posClass =
+          jarak === 0 ? "pos-0" :
+          jarak === 1 ? "pos-1" :
+          jarak === -1 ? "pos-neg1" :
+          jarak === 2 ? "pos-2" : "pos-neg2";
+
+        card.className = "coverflow-card " + posClass;
+        card.style.setProperty("--card-stroke", produkCarousel[i].warna || "#4fd1c5");
+      });
+    }
+
+    function geserCarousel(arah) {
+      const total = produkCarousel.length;
+      indexTengah = (indexTengah + arah + total) % total;
+      updatePosisiCarousel();
+      resetAutoSlide();
+    }
+
+    // =====================================================
+    // AUTO-SLIDE — geser otomatis tiap 4 detik
+    // =====================================================
+    let autoSlideTimer = null;
+
+    function mulaiAutoSlide() {
+      autoSlideTimer = setInterval(() => {
+        indexTengah = (indexTengah + 1) % produkCarousel.length;
+        updatePosisiCarousel();
+      }, 4000);
+    }
+
+    function resetAutoSlide() {
+      clearInterval(autoSlideTimer);
+      mulaiAutoSlide();
+    }
+
+    mulaiAutoSlide();
+    buatCarousel();
   </script>
 
 </body>
