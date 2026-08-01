@@ -642,8 +642,10 @@
           </a>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- MODAL QRIS -->
+  <!-- MODAL QRIS -->
   <div class="modal-overlay" id="modalQrisOverlay" onclick="tutupModalQrisDariLuar(event)">
     <div class="modal-qris-box">
       <div class="modal-qris-header">
@@ -652,16 +654,13 @@
       </div>
       <div class="modal-qris-body">
         <div class="modal-qris-image">
-          <img src="images/QRIS.jepg" alt="QRIS Pembayaran">
+          <img src="images/QRIS.jpeg" alt="QRIS Pembayaran">
         </div>
         <div class="modal-qris-caption">
           Scan QRIS di atas menggunakan aplikasi pembayaran apa aja (DANA, GoPay, OVO, ShopeePay, m-banking, dll),
           lalu kirim bukti transfer ke WhatsApp buat konfirmasi ama kirim alamat email untuk akses Drive.
         </div>
       </div>
-    </div>
-  </div>
-
     </div>
   </div>
 
@@ -827,9 +826,6 @@
       }
     }
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") tutupModal();
-    });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         tutupModal();
