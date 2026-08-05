@@ -88,7 +88,7 @@
   }
 
   /* =====================================================
-     HERO SECTION (KOTAK DENGAN FULL GAMBAR & TEKS DI KIRI)
+     HERO SECTION (TANPA OVERLAY HASIL EDIT)
   ===================================================== */
   .hero-wrap{
     max-width: 1400px;
@@ -96,9 +96,7 @@
     padding: 0 20px;
   }
   .hero-card{
-    /* Gradien dari gelap di kiri (supaya teks terbaca) ke transparan di kanan */
-    background: linear-gradient(to right, rgba(18, 18, 22, 0.95) 0%, rgba(18, 18, 22, 0.75) 45%, rgba(18, 18, 22, 0.25) 100%), 
-                url('images/tesbanner.png');
+    background: url('images/tesbanner.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -160,8 +158,7 @@
   }
   @media (max-width: 600px){
     .hero-card{
-      background: linear-gradient(rgba(18, 18, 22, 0.85), rgba(18, 18, 22, 0.85)), 
-                  url('images/tesbanner.png');
+      background: url('images/tesbanner.png');
       background-size: cover;
       background-position: center;
     }
