@@ -51,21 +51,15 @@
     flex-shrink: 0;
     justify-self: start;
   }
-  .navbar-logo-icon{
-    width: 34px;
-    height: 34px;
+  .navbar-img-logo{
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
     border-radius: 8px;
-    background: var(--secondary);
-    color: #14161f;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 17px;
     flex-shrink: 0;
   }
   .navbar-logo-text{ line-height: 1.2; }
-  .navbar-logo-text .name{ font-weight: 800; font-size: 15px; }
-  .navbar-logo-text .tagline{ font-size: 10px; color: var(--text-muted); }
+  .navbar-logo-text .name{ font-weight: 800; font-size: 16px; }
 
   .navbar-links{
     display: flex;
@@ -94,16 +88,32 @@
   }
 
   /* =====================================================
-     HERO SECTION
+     HERO SECTION (KOTAK DENGAN FULL GAMBAR & TEKS DI KIRI)
   ===================================================== */
+  .hero-wrap{
+    max-width: 1400px;
+    margin: 20px auto 0;
+    padding: 0 20px;
+  }
+  .hero-card{
+    /* Gradien dari gelap di kiri (supaya teks terbaca) ke transparan di kanan */
+    background: linear-gradient(to right, rgba(18, 18, 22, 0.95) 0%, rgba(18, 18, 22, 0.75) 45%, rgba(18, 18, 22, 0.25) 100%), 
+                url('images/tesbanner.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 32px;
+    overflow: hidden;
+  }
   .hero{
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 80px 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    padding: 80px 60px;
+    display: flex;
     align-items: center;
+    min-height: 420px;
+  }
+  .hero-content{
+    max-width: 550px;
+    text-align: left;
   }
   .hero-badge{
     color: var(--secondary);
@@ -115,17 +125,17 @@
   }
   .hero-title{
     font-family: 'Poppins', sans-serif;
-    font-size: 68px;
-    font-weight: 700;
+    font-size: 64px;
+    font-weight: 800;
     line-height: 1.15;
     margin-bottom: 16px;
+    color: #ffffff;
   }
   .hero-desc{
-    color: var(--text-muted);
+    color: #d0d0d8;
     font-size: 18px;
     line-height: 1.75;
-    max-width: 520px;
-    margin-bottom: 26px;
+    margin-bottom: 30px;
   }
   .hero-cta{
     display: inline-flex;
@@ -143,54 +153,20 @@
   }
   .hero-cta:hover{ filter: brightness(1.08); transform: translateY(-2px); }
 
-  .hero-image-wrap{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .hero-image-glow{
-    position: absolute;
-    width: 90%;
-    height: 90%;
-    background: radial-gradient(circle, rgba(183,156,106,0.18), transparent 70%);
-    filter: blur(24px);
-    z-index: 0;
-  }
-  .hero-image-wrap img{
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 650px;
-    border-radius: 20px;
-    display: block;
-  }
-
-  .hero-wrap{
-    max-width: 1400px;
-    margin: 20px auto 0;
-    padding: 0 20px;
-  }
-  .hero-card{
-    background: #1c1c22;
-    border-radius: 32px;
-    overflow: hidden;
-  }
-
-  @media (max-width: 1200px){
-    .hero-title{ font-size: 52px; }
-    .hero-image-wrap img{ max-width: 500px; }
-  }
   @media (max-width: 900px){
-    .hero{
-      grid-template-columns: 1fr;
-      text-align: center;
-      padding: 60px 20px;
+    .hero{ padding: 60px 32px; }
+    .hero-title{ font-size: 48px; }
+    .hero-desc{ font-size: 16px; }
+  }
+  @media (max-width: 600px){
+    .hero-card{
+      background: linear-gradient(rgba(18, 18, 22, 0.85), rgba(18, 18, 22, 0.85)), 
+                  url('images/tesbanner.png');
+      background-size: cover;
+      background-position: center;
     }
-    .hero-desc{ margin-left: auto; margin-right: auto; }
-    .hero-image-wrap{ order: -1; margin-bottom: 30px; }
-    .hero-title{ font-size: 42px; }
-    .hero-image-wrap img{ max-width: 420px; }
+    .hero{ padding: 40px 20px; }
+    .hero-title{ font-size: 36px; }
   }
 
   /* =====================================================
@@ -226,7 +202,7 @@
     border-radius: 16px;
     overflow: hidden;
     background: var(--card-bg);
-    border: 2px solid var(--secondary); /* Warna stroke dipatenkan */
+    border: 2px solid var(--secondary);
     transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
                 opacity 0.65s ease,
                 box-shadow 0.65s ease,
@@ -248,7 +224,6 @@
     background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
   }
 
-  /* Animasi floatCard dihapus agar efek geser mulus tidak bertabrakan */
   .coverflow-card.pos-0{
     transform: translateX(0) scale(1);
     z-index: 5;
@@ -437,13 +412,13 @@
 <body>
 
   <!-- =====================================================
-       NAVBAR (Link Menuju Halaman Baru)
+       NAVBAR
   ===================================================== -->
   <nav class="navbar">
     <a href="index.html" class="navbar-logo">
       <img src="images/logo.png" alt="Logo NelsNovel" class="navbar-img-logo">
       <div class="navbar-logo-text">
-    	<div class="name">NelsNovel</div>
+        <div class="name">NelsNovel</div>
       </div>
     </a>
     <div class="navbar-links">
@@ -467,10 +442,6 @@
             dan dinikmati kapan saja.
           </p>
           <a href="#katalog" class="hero-cta">Jelajahi Katalog &rsaquo;</a>
-        </div>
-        <div class="hero-image-wrap">
-          <div class="hero-image-glow"></div>
-          <img src="images/tesbanner.png" alt="Ilustrasi NelsNovel">
         </div>
       </section>
     </div>
