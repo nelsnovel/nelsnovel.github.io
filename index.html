@@ -19,6 +19,14 @@
     --text-muted: #a0a0aa;
   }
   *{ box-sizing:border-box; margin:0; padding:0; }
+
+  /* PROTEKSI GAMBAR — cegah drag & select */
+  img{
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: auto;
+  }
   html{ scroll-behavior: smooth; }
   body{
     font-family: var(--font-main);
@@ -656,6 +664,15 @@
 
     mulaiAutoSlide();
     buatCarousel();
+
+    buatCarousel();
+
+    // =====================================================
+    // PROTEKSI GAMBAR — nonaktifkan klik kanan
+    // =====================================================
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
   </script>
 </body>
 </html>
