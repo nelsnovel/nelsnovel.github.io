@@ -503,11 +503,12 @@
 
   <script>
     const produk = [
+      { gambar: "https://res.cloudinary.com/skwsl5ds/image/upload/v1786364323/image_rsrc5XR-compressed_cqqauj.webp",   judul: "Ochibure Tensai Reijou no Gohoushi de Bonjin no Ore wa Saikyou ni naru ~Maryoku wo Ushinatte Ochikobore ta Ojousama wo Sukuttara Kiss wo Segamarete imasu~  [V1]", genre: "Fantasy", baru: true },
       { gambar: "https://res.cloudinary.com/skwsl5ds/image/upload/v1786021074/kuzuv6-compressed_yj0hy7.webp",   judul: "Kuzulesse Oblige 18-kin Game Sekai no Kuzu Akuyaku ni Tensei Shite Shimashita Ore wa, Gensaku Chishiki no Chikara de Doushitemo Mob Jinsei wo Tsukamidori Tai [V6]", genre: "Fantasy", baru: true },
       { gambar: "https://res.cloudinary.com/skwsl5ds/image/upload/v1786021070/gimaiv2_qnkgrp.webp",   judul: "Gimai Nara Honki Ni Natte Mo Ii Yone [V2]", genre: "Romance", baru: true },
       { gambar: "images/coverbaru2.webp",   judul: "Akugyaku no Agapeia ~Renai RPG Saikyou no Netori Charao ni Tensei shita kedo, Ore wa Zettai ni Netottari shinai!~  [V1]", genre: "Fantasy", baru: true },
       { gambar: "images/coverbaru1.webp", judul: "Jinrui Metsubou BAD END made Ato 2-nen, Boku dake ga Sore wo Shitte Iru [V2]", genre: "Fantasy", baru: true },
-      { gambar: "images/cover1.jpg", judul: "Bad End Fukahi no Make Heroine-tachi ga Mob Boukansha no Ore ni Renai Flag wo Tatete kuru [V1]", genre: "Romance", baru: true },
+      { gambar: "images/cover1.jpg", judul: "Bad End Fukahi no Make Heroine-tachi ga Mob Boukansha no Ore ni Renai Flag wo Tatete kuru [V1]", genre: "Romance", baru: false },
       { gambar: "images/cover14.webp", judul: "Shibou End wo Kaihi shita Gal Game no Heroine-tachi ga Ore no [Nikki-cho] o Yonde Himitsu o Shitta Rashii [V2]", genre: ["Romance", "Drama"], baru: false },
       { gambar: "images/cover55.webp", judul: "Shibou End wo Kaihi shita Gal Game no Heroine-tachi ga Ore no [Nikki-cho] o Yonde Himitsu o Shitta Rashii [V1]", genre: ["Romance", "Drama"], baru: false },
       { gambar: "images/cover2.webp", judul: "Ouja no Bankuruwase ~Net Shougi no Teiou, Shinigami no Kama wo Hirugaesu~ [V2]", genre: "Sports", baru: false },
@@ -526,6 +527,7 @@
       { gambar: "images/cover20.webp", judul: "Jibun Daisuki Umezono-kun to Sono Shinja-chan [V1]", genre: "Romance", baru: false },
       { gambar: "images/cover22.webp", judul: "Gakunen de Ichiban Kawaii Hoshigasaki-san to Tomodachi ni Nattara Mainichi Mitchaku ga Tomaranai [V1]", genre: "Romance", baru: false },
       { gambar: "images/cover23.webp", judul: "Social Game Tensei Shita Ore wa ★ 1 Heroine wo Oshi Tsudzukeru  [V1]", genre: "Romance", baru: false },
+      { gambar: "images/cover25.webp", judul: "Roleplay Gachi-zei to Satsujinki (Go) 1 Isekai ni Mayoikonda Hai Gamer no Mujikaku Musou   [V1]", genre: ["Fantasy", "Romance"], baru: false },
       { gambar: "images/cover19.webp", judul: "Tensei Teido de Mune no Ana wa Umaranai [V4]", genre: ["Fantasy", "Romance"], baru: false },
       { gambar: "images/cover33.webp", judul: "Tensei Teido de Mune no Ana wa Umaranai [V3]", genre: ["Fantasy", "Romance"], baru: false },
       { gambar: "images/cover42.webp", judul: "Tensei Teido de Mune no Ana wa Umaranai [V2]", genre: ["Fantasy", "Romance"], baru: false },
@@ -533,9 +535,9 @@
       { gambar: "images/cover11.webp", judul: "Sukidatta Ko wo Meido ni Shitara, Ore no Heya de Kossori Nani ka Shite iru [V3]", genre: ["Romance", "Drama"], baru: false },
       { gambar: "images/cover60.webp", judul: "Sukidatta Ko wo Meido ni Shitara, Ore no Heya de Kossori Nani ka Shite iru [V2]", genre: ["Romance", "Drama"], baru: false },
       { gambar: "images/cover59.webp", judul: "Sukidatta Ko wo Meido ni Shitara, Ore no Heya de Kossori Nani ka Shite iru [V1]", genre: ["Romance", "Drama"], baru: false },
-      { gambar: "images/cover78.webp", judul: "Tsuihou Sareta Koushaku Reijou to Iku Boukensha Seikatsun [V3]", genre: ["Fantasy", "Romance"], baru: false },
-      { gambar: "images/cover38.webp", judul: "Tsuihou Sareta Koushaku Reijou to Iku Boukensha Seikatsun [V2]", genre: ["Fantasy", "Romance"], baru: false },
-      { gambar: "images/cover79.webp", judul: "Tsuihou Sareta Koushaku Reijou to Iku Boukensha Seikatsun [V1]", genre: ["Fantasy", "Romance"], baru: false },
+      { gambar: "images/cover78.webp", judul: "Tsuihou Sareta Koushaku Reijou to Iku Boukensha Seikatsu [V3]", genre: ["Fantasy", "Romance"], baru: false },
+      { gambar: "images/cover38.webp", judul: "Tsuihou Sareta Koushaku Reijou to Iku Boukensha Seikatsu [V2]", genre: ["Fantasy", "Romance"], baru: false },
+      { gambar: "images/cover79.webp", judul: "Tsuihou Sareta Koushaku Reijou to Iku Boukensha Seikatsu [V1]", genre: ["Fantasy", "Romance"], baru: false },
       { gambar: "images/cover17.webp", judul: "Monogatari no Kuromaku ni Tensei Shite ~ Shinka Suru Maken to Game Chishiki de Subete o Nejifuseru [V7]", genre: "Fantasy", baru: false },
       { gambar: "images/cover16.webp", judul: "Monogatari no Kuromaku ni Tensei Shite ~ Shinka Suru Maken to Game Chishiki de Subete o Nejifuseru [V6]", genre: "Fantasy", baru: false },
       { gambar: "images/cover24.webp", judul: "Monogatari no Kuromaku ni Tensei Shite ~ Shinka Suru Maken to Game Chishiki de Subete o Nejifuseru [V5]", genre: "Fantasy", baru: false },
@@ -569,6 +571,11 @@
       { gambar: "images/cover34.webp", judul: "Yamiochi Last Boss Reijo no Osananajimi ni Tensei Shita. Ore ga Shindara Bad End Kakuiei nanode Saikyo ni Natta kedo, Mo Yamiochi [Yandere ka] Shitemasen ka [V2]", genre: ["Fantasy", "Romance"], baru: false },
       { gambar: "images/cover90.webp", judul: "Yamiochi Last Boss Reijo no Osananajimi ni Tensei Shita. Ore ga Shindara Bad End Kakuiei nanode Saikyo ni Natta kedo, Mo Yamiochi [Yandere ka] Shitemasen ka [V1]", genre: ["Fantasy", "Romance"], baru: false },
       { gambar: "https://res.cloudinary.com/skwsl5ds/image/upload/v1786337666/cover-compressed_qvppsk.webp", judul: "Saijo no Osewa: Takane no Hanadarake na Meimonkou de, Gakuin Ichi no Ojousama (Seikatsu Nouryoku Kaimu) wo Kagenagara Osewa suru Koto ni Narimashita [V1]", genre: ["Romance", "Drama"], baru: false },
+      { gambar: "images/cover26.webp", judul: "Yaa Toukou ni Idome Ningen Gamer-domo wa Buki wo Katate ni Yuganda Kousha wo Touha Suru [V1]", genre: "Romance", baru: false },
+      { gambar: "images/cover27.webp", judul: "Ouritsu Academy no Saikyou de Taidana Mahoushi ~ Kyoushi wo Suru Koto ni Natta Kuzu Kizoku, Jitsu wa Saikyou Mahoushidan no Eiyuu deshita ~  [V1]", genre: "fantasy", baru: false },
+      { gambar: "images/cover28.webp", judul: "Jinrui Metsubou BAD END made Ato 2-nen, Boku dake ga Sore wo Shitte Iru [V1]", genre: "Fantasy", baru: false },
+      { gambar: "images/cover29.webp", judul: "Isekai Tensei shita Moto Kyoushi, Rinji Kyoushi toshite Houkai shita Majutsu Gakuen wo Sukuu [V1]", genre: "Fantasy", baru: false },
+      { gambar: "images/cover30.webp", judul: "Ore wa Gakuen Zunou Battle no Ensyutsuka! Jishou Mob ga Kage kara Egaku Saikyou Shujinkou Musou Scenario [V1]", genre: "Game", baru: false },
     ];
 
     const PRODUK_PER_HALAMAN = 20;
