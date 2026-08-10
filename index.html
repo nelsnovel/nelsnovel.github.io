@@ -582,16 +582,22 @@
     const searchEmpty = document.getElementById("searchEmpty");
     const genreFilter = document.getElementById("genreFilter");
 
+    // Helper: selalu ubah genre jadi array, entah aslinya teks tunggal atau sudah array
+    function genreArray(item) {
+      if (!item.genre) return [];
+      return Array.isArray(item.genre) ? item.genre : [item.genre];
+    }
+
     function getProdukTersaring() {
       return produk.filter(item => {
         const cocokJudul = !kataKunci || item.judul.toLowerCase().includes(kataKunci.toLowerCase());
-        const cocokGenre = genreAktif === "Semua" || genreArray(item).includes(genreAktif)
+        const cocokGenre = genreAktif === "Semua" || genreArray(item).includes(genreAktif);
         return cocokJudul && cocokGenre;
       });
     }
 
     function renderGenreFilter() {
-      const semuaGenre = ["Semua", ...new Set(produk.map(item => item.genre).filter(Boolean))];
+      const semuaGenre = ["Semua", ...new Set(produk.flatMap(item => genreArray(item)))];
       genreFilter.innerHTML = "";
       semuaGenre.forEach(g => {
         const btn = document.createElement("button");
