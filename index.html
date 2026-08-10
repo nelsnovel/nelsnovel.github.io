@@ -585,7 +585,7 @@
     function getProdukTersaring() {
       return produk.filter(item => {
         const cocokJudul = !kataKunci || item.judul.toLowerCase().includes(kataKunci.toLowerCase());
-        const cocokGenre = genreAktif === "Semua" || item.genre === genreAktif;
+        const cocokGenre = genreAktif === "Semua" || genreArray(item).includes(genreAktif)
         return cocokJudul && cocokGenre;
       });
     }
