@@ -418,20 +418,30 @@
     flex-wrap: wrap;
   }
   .page-btn{
-    background: #ffffff;
-    color: #000000;
-    border: 2px solid var(--secondary);
-    box-shadow: 0 4px 0 0 var(--secondary);
-    border-radius: 8px;
-    padding: 8px 16px;
-    font-size: 13px;
+    background: linear-gradient(135deg, #a3814f 0%, #e8d4ac 100%);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 6px 16px rgba(163, 129, 79, 0.35);
+    border-radius: 999px;
+    padding: 14px 32px;
+    font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     font-family: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .page-btn:hover{ filter: brightness(0.97); }
-  .page-btn:disabled{ opacity: 0.4; cursor: not-allowed; }
+  .page-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(163, 129, 79, 0.45);
+  }
+  .page-btn:disabled{ opacity: 0.4; cursor: not-allowed; transform: none; }
   .page-info{ color: var(--text-muted); font-size: 13px; font-weight: 600; padding: 0 6px; }
+
+  @media (max-width: 560px){
+    .pagination{ flex-wrap: nowrap; gap: 6px; padding: 24px 12px 50px; }
+    .page-btn{ padding: 10px 16px; font-size: 13px; white-space: nowrap; }
+    .page-info{ font-size: 11px; padding: 0 2px; white-space: nowrap; }
+  }
 </style>
 </head>
 <body>
@@ -478,9 +488,7 @@
   <div class="section-heading">NEW UPDATE!</div>
 
   <div class="carousel-wrap">
-    <button class="carousel-arrow left" onclick="geserCarousel(-1)">&#8249;</button>
     <div class="carousel-stage" id="carouselStage"></div>
-    <button class="carousel-arrow right" onclick="geserCarousel(1)">&#8250;</button>
   </div>
 
   <div class="catalog-section" id="katalog">
@@ -512,11 +520,13 @@
       { gambar: "images/cover14.webp", judul: "Shibou End wo Kaihi shita Gal Game no Heroine-tachi ga Ore no [Nikki-cho] o Yonde Himitsu o Shitta Rashii [V2]", genre: ["Romance", "Drama"], baru: false },
       { gambar: "images/cover55.webp", judul: "Shibou End wo Kaihi shita Gal Game no Heroine-tachi ga Ore no [Nikki-cho] o Yonde Himitsu o Shitta Rashii [V1]", genre: ["Romance", "Drama"], baru: false },
       { gambar: "images/cover2.webp", judul: "Ouja no Bankuruwase ~Net Shougi no Teiou, Shinigami no Kama wo Hirugaesu~ [V2]", genre: "Sports", baru: false },
+      { gambar: "images/cover54.webp", judul: "Jibun wo Make Heroine da to Omoikonde iru Sudeni Shourizumi no Osananajimi [V2]", genre: "Romance", baru: false },
+      { gambar: "images/cover53.webp", judul: "Jibun wo Make Heroine da to Omoikonde iru Sudeni Shourizumi no Osananajimi [V1]", genre: "Romance", baru: false },
       { gambar: "images/cover3.webp", judul: "Game Chuuban de Uragiru Itome Kansaiben no Akuyaku Kizoku ni Tensei shita node, Koyuu Mahou wo Kiwamete Hametsu Flag wo Kaihi shimasu [V1]", genre: "Fantasy", baru: false },
       { gambar: "images/cover4.webp", judul: "Jitsu wa Ippai Taberu Harapeko Gyaru ga Futamata sarete ta kara, Ibukuro wo Tsukande Kuzu Kareshi kara Ryakudatsu suru koto ni shita [V1]", genre: "Romance", baru: false },
       { gambar: "images/cover5.webp", judul: "Saijo no Osewa: Takane no Hanadarake na Meimonkou de, Gakuin Ichi no Ojousama (Seikatsu Nouryoku Kaimu) wo Kagenagara Osewa suru Koto ni Narimashita [V2]", genre: ["Romance", "Drama"], baru: false },
       { gambar: "images/cover6.webp", judul: "Maou no Kyoushitsu Nishuume Kyoushi wa Seito wo Nidoto Shinasenai [V1]", genre: "Fantasy", baru: false },
-      { gambar: "images/cover7.webp", judul: "Class no Quarter Bishoujo ga Gimai ni Natta. Shiranai Uchi ni Kudoi Teta [V2}", genre: "Romance", baru: false },
+      { gambar: "images/cover7.webp", judul: "Class no Quarter Bishoujo ga Gimai ni Natta. Shiranai Uchi ni Kudoi Teta [V2]", genre: "Romance", baru: false },
       { gambar: "images/cover8.webp", judul: "Jinrui Metsubou End ni Totsunyuu shita node, Sekai Saikyou no Akuyaku Kizoku wa Yudan Manshin wo Yamemashita. ~Nanmin wo Ukeire Makutetara Ryouchi ga 'Saigo no Toride' ni. Zettai Bougyo Skill to Jinzai Cheat wo Kushi shite Game Chishiki de Musou shimasu~ [V1]", genre: "Fantasy", baru: false },
       { gambar: "images/cover9.webp", judul: "Danjohi 1:30 no Teisou Gyakuten Sekai de Mi wo Teishite Onnanoko-tachi wo Mamottara Ai ga Omoku Narisugita [V1]", genre: "Fantasy", baru: false },
       { gambar: "images/cover10.webp", judul: "Densha de Nagurareteru Ikemen Danshi Koukousei o Tasuketara Joshi-kou no Oujisama Datta Ken [V2]", genre: "Romance", baru: false },
